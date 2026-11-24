@@ -1,0 +1,23 @@
+erDiagram
+    kategori_fasilitas ||--o{ fasilitas : "memiliki"
+    fasilitas ||--o{ laporan_kerusakan : "dilaporkan dalam"
+
+    kategori_fasilitas {
+        int id_kategori PK
+        varchar nama_kategori
+    }
+    fasilitas {
+        int id_fasilitas PK
+        varchar nama_fasilitas
+        varchar lokasi
+        int id_kategori FK
+    }
+    laporan_kerusakan {
+        int id_laporan PK
+        varchar nama_pelapor
+        int id_fasilitas FK
+        text deskripsi
+        enum prioritas
+        enum status
+        datetime tanggal_laporan
+    }

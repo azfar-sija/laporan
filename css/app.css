@@ -1,0 +1,23 @@
+/* Tambahan kecil di atas simple.css */
+
+.pesan {
+    padding: 0.75rem 1rem;
+    border-radius: var(--standard-border-radius);
+    border: 2px solid var(--border);
+    background: var(--accent-bg);
+}
+.pesan.sukses { border-color: #2e7d32; }
+.pesan.gagal  { border-color: #c62828; }
+
+small.error { color: #c62828; display: block; margin: -0.5rem 0 0.75rem; }
+
+table td form { margin: 0; display: flex; gap: 0.4rem; align-items: center; }
+table td select { margin: 0; width: auto; }
+table td button { margin: 0; }
+
+.aksi { white-space: nowrap; }
+.kosong { text-align: center; color: var(--text-light); }
+
+/* Lebarkan halaman supaya tabel muat (bawaan simple.css hanya ~45rem) */
+body { grid-template-columns: 1fr min(75rem, 94%) 1fr; }
+.tabel-gulung { overflow-x: auto; }
