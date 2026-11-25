@@ -1,6 +1,7 @@
 <?php
 // UPDATE: pilih satu laporan, tampilkan di form, simpan perubahannya.
 require __DIR__ . '/includes/init.php';
+wajibLogin();
 
 $id   = (int) ($_GET['id'] ?? 0);
 $data = $id > 0 ? $laporan->cari($id) : null;

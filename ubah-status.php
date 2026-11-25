@@ -1,6 +1,7 @@
 <?php
 // UPDATE cepat: ubah status dari dropdown di tabel.
 require __DIR__ . '/includes/init.php';
+wajibLogin();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id     = (int) ($_POST['id_laporan'] ?? 0);

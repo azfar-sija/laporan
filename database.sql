@@ -46,6 +46,14 @@ CREATE TABLE laporan_kerusakan (
         ON UPDATE CASCADE ON DELETE RESTRICT
 );
 
+-- 4) Admin: akun pengelola untuk memproses, mengedit, dan menghapus laporan
+CREATE TABLE admin (
+    id_admin      INT AUTO_INCREMENT PRIMARY KEY,
+    username      VARCHAR(50) NOT NULL UNIQUE,
+    password_hash VARCHAR(255) NOT NULL,
+    nama_lengkap  VARCHAR(100) NOT NULL
+);
+
 INSERT INTO kategori_fasilitas (id_kategori, nama_kategori) VALUES
     (1, 'Elektronik'),
     (2, 'Furnitur'),
@@ -109,7 +117,12 @@ VALUES
     ('Andi Pratama', 1, 'Lampu proyektor mulai redup lagi', 'Sedang', 'Menunggu', '2026-11-12 07:55:00'),
     ('Rizky Ramadhan', 11, 'Sudah menyala tetapi layar tidak menampilkan gambar', 'Sedang', 'Diproses', '2026-11-16 09:30:00');
 
--- Cek hasil: kategori 4, fasilitas 26, laporan 23
+-- 4) Akun admin default: username 'admin', password 'admin123'
+INSERT INTO admin (username, password_hash, nama_lengkap) VALUES
+    ('admin', '$2y$10$3M8L9gTehSLQB5o86/JBr.AtocSd84yiu7pWkcUaS.8TkTPmGGRYm', 'Administrator Sarpras');
+
+-- Cek hasil: kategori 4, fasilitas 26, laporan 23, admin 1
 SELECT (SELECT COUNT(*) FROM kategori_fasilitas) AS kategori,
        (SELECT COUNT(*) FROM fasilitas)          AS fasilitas,
-       (SELECT COUNT(*) FROM laporan_kerusakan)  AS laporan;
+       (SELECT COUNT(*) FROM laporan_kerusakan)  AS laporan,
+       (SELECT COUNT(*) FROM admin)              AS admin;
