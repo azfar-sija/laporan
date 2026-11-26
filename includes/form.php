@@ -11,7 +11,7 @@
         <div class="form-group">
             <label for="nama_pelapor">Nama Pelapor</label>
             <input type="text" id="nama_pelapor" name="nama_pelapor" maxlength="100" required
-                   value="<?= escape($nilai['nama_pelapor']) ?>" placeholder="Contoh: Budi Santoso">
+                value="<?= escape($nilai['nama_pelapor']) ?>" placeholder="Contoh: Budi Santoso">
             <?php if (isset($error['nama_pelapor'])): ?>
                 <small class="error"><?= escape($error['nama_pelapor']) ?></small>
             <?php endif; ?>
@@ -60,7 +60,7 @@
         <div class="form-group">
             <label for="deskripsi">Deskripsi Kerusakan</label>
             <textarea id="deskripsi" name="deskripsi" rows="4" maxlength="1000" required
-                      placeholder="Jelaskan detail kerusakan fasilitas..."><?= escape($nilai['deskripsi']) ?></textarea>
+                    placeholder="Jelaskan detail kerusakan fasilitas..."><?= escape($nilai['deskripsi']) ?></textarea>
             <?php if (isset($error['deskripsi'])): ?>
                 <small class="error"><?= escape($error['deskripsi']) ?></small>
             <?php endif; ?>

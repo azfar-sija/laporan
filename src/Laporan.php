@@ -17,8 +17,8 @@ class Laporan
     public function semua(): array
     {
         $sql = "SELECT l.id_laporan, l.nama_pelapor, l.prioritas, l.status, l.tanggal_laporan,
-                       f.nama_fasilitas, f.lokasi,
-                       k.nama_kategori
+                    f.nama_fasilitas, f.lokasi,
+                    k.nama_kategori
                 FROM laporan_kerusakan AS l
                 JOIN fasilitas AS f          ON f.id_fasilitas = l.id_fasilitas
                 JOIN kategori_fasilitas AS k ON k.id_kategori  = f.id_kategori

@@ -5,7 +5,7 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-require_once __DIR__ . '/../config/koneksi.php';   // membuat variabel $db (PDO)
+require_once __DIR__ . '/../config/koneksi.php'; 
 require_once __DIR__ . '/../src/Laporan.php';
 require_once __DIR__ . '/../src/Auth.php';
 
@@ -21,15 +21,14 @@ if (!function_exists('escape')) {
 }
 
 if (!function_exists('setPesan')) {
-    /** Simpan pesan untuk ditampilkan satu kali di halaman berikutnya. */
     function setPesan(string $tipe, string $teks): void
     {
-        $_SESSION['pesan'] = ['tipe' => $tipe, 'teks' => $teks];   // tipe: sukses | gagal
+        $_SESSION['pesan'] = ['tipe' => $tipe, 'teks' => $teks];   
     }
 }
 
 if (!function_exists('ambilPesan')) {
-    /** Ambil pesan lalu hapus, supaya tidak muncul lagi setelah refresh. */
+
     function ambilPesan(): ?array
     {
         $pesan = $_SESSION['pesan'] ?? null;
@@ -39,7 +38,7 @@ if (!function_exists('ambilPesan')) {
 }
 
 if (!function_exists('redirect')) {
-    /** Pindah halaman lalu hentikan script. */
+
     function redirect(string $url): void
     {
         header('Location: ' . $url);
@@ -48,7 +47,7 @@ if (!function_exists('redirect')) {
 }
 
 if (!function_exists('isLoggedIn')) {
-    /** Cek apakah admin sedang login. */
+
     function isLoggedIn(): bool
     {
         global $auth;
@@ -57,7 +56,7 @@ if (!function_exists('isLoggedIn')) {
 }
 
 if (!function_exists('wajibLogin')) {
-    /** Proteksi halaman: wajib login sebagai admin. */
+
     function wajibLogin(): void
     {
         global $auth;
