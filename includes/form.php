@@ -1,10 +1,5 @@
 <?php
-// Form yang dipakai bersama oleh tambah.php dan edit.php.
-// Variabel yang dibutuhkan:
-//   $nilai    -> isian saat ini (array)
-//   $error    -> pesan error per field (array, boleh kosong)
-//   $fasilitas -> daftar fasilitas untuk dropdown
-//   $tombol   -> teks tombol simpan
+
 ?>
 <div class="card card-form">
     <div class="card-header">

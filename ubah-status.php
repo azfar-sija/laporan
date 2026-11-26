@@ -1,5 +1,5 @@
 <?php
-// UPDATE cepat: ubah status dari dropdown di tabel.
+
 require __DIR__ . '/includes/init.php';
 wajibLogin();
 

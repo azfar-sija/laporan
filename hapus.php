@@ -1,5 +1,5 @@
 <?php
-// DELETE: hapus satu laporan (hanya lewat POST).
+
 require __DIR__ . '/includes/init.php';
 wajibLogin();
 

@@ -1,5 +1,5 @@
 <?php
-// Bagian atas halaman. Set $judul sebelum require file ini.
+
 $judul    = $judul ?? 'Laporan Kerusakan Fasilitas';
 $pesan    = ambilPesan();
 $isAdmin  = isLoggedIn();

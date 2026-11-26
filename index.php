@@ -1,5 +1,5 @@
 <?php
-// READ: menampilkan semua laporan dari database.
+
 require __DIR__ . '/includes/init.php';
 
 try {
@@ -65,7 +65,6 @@ require __DIR__ . '/includes/header.php';
                     </td>
                     <td>
                         <?php if ($isAdmin): ?>
-                            <!-- UPDATE cepat: ubah status langsung dari tabel (Khusus Admin) -->
                             <form action="ubah-status.php" method="POST" class="form-status-inline">
                                 <input type="hidden" name="id_laporan" value="<?= (int) $baris['id_laporan'] ?>">
                                 <select name="status" aria-label="Status">
@@ -76,7 +75,6 @@ require __DIR__ . '/includes/header.php';
                                 <button type="submit" class="btn btn-sm btn-secondary">Ubah</button>
                             </form>
                         <?php else: ?>
-                            <!-- Pengunjung publik hanya melihat badge teks status -->
                             <span class="badge <?= $statusClass ?>"><?= escape($baris['status']) ?></span>
                         <?php endif; ?>
                     </td>
@@ -85,9 +83,8 @@ require __DIR__ . '/includes/header.php';
                         <td class="aksi">
                             <div class="aksi-buttons">
                                 <a href="edit.php?id=<?= (int) $baris['id_laporan'] ?>" class="btn btn-sm btn-outline">Edit</a>
-                                <!-- DELETE: lewat POST + konfirmasi -->
                                 <form action="hapus.php" method="POST" style="display:inline"
-                                      onsubmit="return confirm('Yakin ingin menghapus laporan ini?');">
+                                    onsubmit="return confirm('Yakin ingin menghapus laporan ini?');">
                                     <input type="hidden" name="id_laporan" value="<?= (int) $baris['id_laporan'] ?>">
                                     <button type="submit" class="btn btn-sm btn-danger">Hapus</button>
                                 </form>

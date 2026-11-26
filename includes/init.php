@@ -1,7 +1,5 @@
 <?php
-// File "pembuka" yang dipanggil di paling atas setiap halaman:
-//   require_once __DIR__ . '/includes/init.php';
-// Isinya: session, koneksi database, objek $laporan & $auth, dan fungsi bantu.
+
 
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
@@ -15,7 +13,7 @@ $laporan = new Laporan($db);
 $auth    = new Auth($db);
 
 if (!function_exists('escape')) {
-    /** Cegah XSS: ubah karakter HTML khusus sebelum ditampilkan. */
+
     function escape($teks): string
     {
         return htmlspecialchars((string) $teks, ENT_QUOTES, 'UTF-8');

@@ -1,8 +1,8 @@
 <?php
-// AUTH: form login admin.
+
 require __DIR__ . '/includes/init.php';
 
-// Jika sudah login, langsung ke index
+
 if (isLoggedIn()) {
     redirect('index.php');
 }
@@ -50,7 +50,7 @@ require __DIR__ . '/includes/header.php';
             <div class="form-group">
                 <label for="username">Username</label>
                 <input type="text" id="username" name="username" maxlength="50" required autofocus
-                       value="<?= escape($username) ?>" placeholder="Masukkan username">
+                    value="<?= escape($username) ?>" placeholder="Masukkan username">
                 <?php if (isset($error['username'])): ?>
                     <small class="error"><?= escape($error['username']) ?></small>
                 <?php endif; ?>
@@ -59,7 +59,7 @@ require __DIR__ . '/includes/header.php';
             <div class="form-group">
                 <label for="password">Password</label>
                 <input type="password" id="password" name="password" required
-                       placeholder="Masukkan password">
+                    placeholder="Masukkan password">
                 <?php if (isset($error['password'])): ?>
                     <small class="error"><?= escape($error['password']) ?></small>
                 <?php endif; ?>

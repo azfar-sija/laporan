@@ -1,5 +1,5 @@
 <?php
-// Kelas Auth = menangani autentikasi Admin berbasis session dan database (PDO).
+
 
 class Auth
 {
@@ -10,9 +10,7 @@ class Auth
         $this->db = $db;
     }
 
-    /**
-     * Cari admin berdasarkan username, verifikasi password, dan simpan session jika valid.
-     */
+
     public function login(string $username, string $password): bool
     {
         $username = trim($username);
@@ -25,7 +23,7 @@ class Auth
         $admin = $stmt->fetch();
 
         if ($admin && password_verify($password, $admin['password_hash'])) {
-            // Regenerasi ID session untuk mencegah session fixation jika header belum terkirim
+
             if (!headers_sent() && session_status() === PHP_SESSION_ACTIVE) {
                 session_regenerate_id(true);
             }
@@ -41,9 +39,7 @@ class Auth
         return false;
     }
 
-    /**
-     * Hapus sesi admin secara aman.
-     */
+
     public function logout(): void
     {
         unset($_SESSION['admin']);
@@ -52,26 +48,18 @@ class Auth
         }
     }
 
-    /**
-     * Cek apakah saat ini ada admin yang sedang login.
-     */
     public function isLoggedIn(): bool
     {
         return !empty($_SESSION['admin']['id_admin']);
     }
 
-    /**
-     * Ambil data admin yang sedang login (null jika belum login).
-     */
+
     public function user(): ?array
     {
         return $_SESSION['admin'] ?? null;
     }
 
-    /**
-     * Pastikan pengguna sudah login sebagai admin.
-     * Jika belum, redirect ke login.php disertai flash message gagal.
-     */
+
     public function wajibLogin(): void
     {
         if (!$this->isLoggedIn()) {

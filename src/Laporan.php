@@ -1,10 +1,8 @@
 <?php
-// Kelas Laporan = semua query SQL untuk tabel laporan_kerusakan ada di sini.
-// Halaman (index.php, tambah.php, dst.) hanya memanggil method-nya.
 
 class Laporan
 {
-    // Nilai yang diizinkan (harus sama dengan ENUM di database.sql)
+
     public const PRIORITAS = ['Rendah', 'Sedang', 'Tinggi'];
     public const STATUS    = ['Menunggu', 'Diproses', 'Selesai'];
 
@@ -15,13 +13,7 @@ class Laporan
         $this->db = $db;
     }
 
-    // ---------- READ ----------
 
-    /**
-     * Semua laporan, yang terbaru di atas.
-     * JOIN 3 tabel: laporan -> fasilitas -> kategori, supaya nama fasilitas,
-     * lokasi, dan nama kategori bisa ditampilkan (di laporan hanya tersimpan id_fasilitas).
-     */
     public function semua(): array
     {
         $sql = "SELECT l.id_laporan, l.nama_pelapor, l.prioritas, l.status, l.tanggal_laporan,
@@ -34,7 +26,7 @@ class Laporan
         return $this->db->query($sql)->fetchAll();
     }
 
-    /** Satu laporan berdasarkan ID (dipakai form edit). null kalau tidak ada. */
+
     public function cari(int $id): ?array
     {
         $stmt = $this->db->prepare("SELECT * FROM laporan_kerusakan WHERE id_laporan = ?");
@@ -42,7 +34,7 @@ class Laporan
         return $stmt->fetch() ?: null;
     }
 
-    /** Daftar fasilitas (beserta kategorinya) untuk dropdown di form. */
+
     public function semuaFasilitas(): array
     {
         $sql = "SELECT f.id_fasilitas, f.nama_fasilitas, f.lokasi, k.nama_kategori
@@ -52,7 +44,7 @@ class Laporan
         return $this->db->query($sql)->fetchAll();
     }
 
-    // ---------- CREATE ----------
+
 
     public function tambah(array $data): void
     {
@@ -68,9 +60,7 @@ class Laporan
         ]);
     }
 
-    // ---------- UPDATE ----------
 
-    /** Ubah semua isian laporan (form edit). */
     public function ubah(int $id, array $data): void
     {
         $sql = "UPDATE laporan_kerusakan
@@ -87,16 +77,14 @@ class Laporan
         ]);
     }
 
-    /** Ubah status saja (dropdown cepat di tabel). */
+
     public function ubahStatus(int $id, string $status): void
     {
         $stmt = $this->db->prepare("UPDATE laporan_kerusakan SET status = ? WHERE id_laporan = ?");
         $stmt->execute([$status, $id]);
     }
 
-    // ---------- DELETE ----------
 
-    /** Hapus laporan. Mengembalikan true kalau ada baris yang terhapus. */
     public function hapus(int $id): bool
     {
         $stmt = $this->db->prepare("DELETE FROM laporan_kerusakan WHERE id_laporan = ?");
@@ -104,12 +92,7 @@ class Laporan
         return $stmt->rowCount() > 0;
     }
 
-    // ---------- VALIDASI ----------
 
-    /**
-     * Cek isian form. Mengembalikan array error (kosong = lolos).
-     * Kuncinya nama field, nilainya pesan error.
-     */
     public function validasi(array $data): array
     {
         $error = [];
@@ -127,7 +110,7 @@ class Laporan
             }
         }
 
-        // Fasilitas harus benar-benar ada di tabel fasilitas (cocok dengan FK)
+
         $idFasilitas = (int) ($data['id_fasilitas'] ?? 0);
         $idValid     = array_map('intval', array_column($this->semuaFasilitas(), 'id_fasilitas'));
         if (!in_array($idFasilitas, $idValid, true)) {
@@ -144,7 +127,7 @@ class Laporan
         return $error;
     }
 
-    /** Ambil hanya field yang dipakai dan rapikan spasi di tepi. */
+
     public static function bersihkan(array $post): array
     {
         $hasil = [];

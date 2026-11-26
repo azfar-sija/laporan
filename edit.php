@@ -1,5 +1,5 @@
 <?php
-// UPDATE: pilih satu laporan, tampilkan di form, simpan perubahannya.
+
 require __DIR__ . '/includes/init.php';
 wajibLogin();
 
@@ -13,7 +13,7 @@ if (!$data) {
 
 $fasilitas = $laporan->semuaFasilitas();
 $error    = [];
-$nilai    = $data;   // form langsung terisi data lama dari database
+$nilai    = $data;   
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nilai = Laporan::bersihkan($_POST);

@@ -1,19 +1,19 @@
 <?php
-// CREATE: form tambah laporan baru.
+
 require __DIR__ . '/includes/init.php';
 
 $fasilitas = $laporan->semuaFasilitas();
 $error    = [];
-$nilai    = [   // isian awal form
+$nilai    = [   
     'nama_pelapor' => '', 'id_fasilitas' => '', 'deskripsi' => '',
     'prioritas'    => 'Sedang', 'status'  => 'Menunggu',
 ];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $nilai = Laporan::bersihkan($_POST);        // 1. ambil & rapikan isian
-    $error = $laporan->validasi($nilai);        // 2. validasi
+    $nilai = Laporan::bersihkan($_POST);        
+    $error = $laporan->validasi($nilai);        
 
-    if (!$error) {                              // 3. lolos -> simpan
+    if (!$error) {                              
         try {
             $laporan->tambah($nilai);
             setPesan('sukses', 'Laporan berhasil ditambahkan.');
